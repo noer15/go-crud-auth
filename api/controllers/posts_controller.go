@@ -50,7 +50,7 @@ func (server *Server) CreatePost(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	w.Header().Set("Lacation", fmt.Sprintf("%s%s/%d", r.Host, r.URL.Path, postCreated.ID))
-	responses.JSON(w, http.StatusCreated, postCreated)
+	responses.JSON(w, http.StatusCreated,"Request successful", postCreated)
 }
 
 func (server *Server) GetPosts(w http.ResponseWriter, r *http.Request) {
@@ -62,7 +62,7 @@ func (server *Server) GetPosts(w http.ResponseWriter, r *http.Request) {
 		responses.ERROR(w, http.StatusInternalServerError, err)
 		return
 	}
-	responses.JSON(w, http.StatusOK, posts)
+	responses.JSON(w, http.StatusOK,"Request successful", posts)
 }
 
 func (server *Server) GetPost(w http.ResponseWriter, r *http.Request) {
@@ -80,7 +80,7 @@ func (server *Server) GetPost(w http.ResponseWriter, r *http.Request) {
 		responses.ERROR(w, http.StatusInternalServerError, err)
 		return
 	}
-	responses.JSON(w, http.StatusOK, postReceived)
+	responses.JSON(w, http.StatusOK,"Request successful", postReceived)
 }
 
 func (server *Server) UpdatePost(w http.ResponseWriter, r *http.Request) {
@@ -151,7 +151,7 @@ func (server *Server) UpdatePost(w http.ResponseWriter, r *http.Request) {
 		responses.ERROR(w, http.StatusInternalServerError, formattedError)
 		return
 	}
-	responses.JSON(w, http.StatusOK, postUpdated)
+	responses.JSON(w, http.StatusOK,"Request successful", postUpdated)
 }
 
 func (server *Server) DeletePost(w http.ResponseWriter, r *http.Request) {
@@ -191,5 +191,5 @@ func (server *Server) DeletePost(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	w.Header().Set("Entity", fmt.Sprintf("%d", pid))
-	responses.JSON(w, http.StatusNoContent, "")
+	responses.JSON(w, http.StatusNoContent, "Request successful","")
 }
