@@ -43,7 +43,7 @@ func (server *Server) CreateUser(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	w.Header().Set("Location", fmt.Sprintf("%s%s/%d", r.Host, r.RequestURI, userCreated.ID))
-	responses.JSON(w, http.StatusCreated, userCreated)
+	responses.JSON(w, http.StatusCreated, "Request successful",userCreated)
 }
 
 func (server *Server) GetUsers(w http.ResponseWriter, r *http.Request) {
@@ -55,7 +55,7 @@ func (server *Server) GetUsers(w http.ResponseWriter, r *http.Request) {
 		responses.ERROR(w, http.StatusInternalServerError, err)
 		return
 	}
-	responses.JSON(w, http.StatusOK, users)
+	responses.JSON(w, http.StatusOK,"Request successful", users)
 }
 
 func (server *Server) GetUser(w http.ResponseWriter, r *http.Request) {
@@ -72,7 +72,7 @@ func (server *Server) GetUser(w http.ResponseWriter, r *http.Request) {
 		responses.ERROR(w, http.StatusBadRequest, err)
 		return
 	}
-	responses.JSON(w, http.StatusOK, userGotten)
+	responses.JSON(w, http.StatusOK, "Request successful",userGotten)
 }
 
 func (server *Server) UpdateUser(w http.ResponseWriter, r *http.Request) {
@@ -115,7 +115,7 @@ func (server *Server) UpdateUser(w http.ResponseWriter, r *http.Request) {
 		responses.ERROR(w, http.StatusInternalServerError, formattedError)
 		return
 	}
-	responses.JSON(w, http.StatusOK, updatedUser)
+	responses.JSON(w, http.StatusOK,"Request successful", updatedUser)
 }
 
 func (server *Server) DeleteUser(w http.ResponseWriter, r *http.Request) {
@@ -144,5 +144,5 @@ func (server *Server) DeleteUser(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	w.Header().Set("Entity", fmt.Sprintf("%d", uid))
-	responses.JSON(w, http.StatusNoContent, "")
+	responses.JSON(w, http.StatusNoContent, "Request successful", nil)
 }
